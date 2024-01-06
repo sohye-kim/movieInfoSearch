@@ -1,6 +1,6 @@
-{
-    "page"; 1,
-    "results"; [
+const movieData = {
+    "page": 1,
+    "results": [
       {
         "adult": false,
         "backdrop_path": "/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",
@@ -391,6 +391,31 @@
         "vote_count": 4065
       }
     ],
-    "total_pages"; 453,
-    "total_results"; 9056
+    "total_pages": 453,
+    "total_results": 9056
   }
+
+  function extractMovieInfo(movie) {
+      return {
+          originalTitle: movie.original_title,
+          overview: movie.overview,
+          posterPath: movie.poster_path,
+          title: movie.title,
+          releaseDate: movie.release_date,
+          voteAverage: movie.vote_average
+      };
+  }
+
+  function extractMoviesInfo(movieData) {
+    return movieArray.map(movie => ({
+        originalTitle: movie.original_title,
+        overview: movie.overview,
+        posterPath: movie.poster_path,
+        title: movie.title,
+        releaseDate: movie.release_date,
+        voteAverage: movie.vote_average
+    }));
+}
+
+const allMoviesInfo = extractMoviesInfo(movieData.results);
+console.log(allMoviesInfo);
