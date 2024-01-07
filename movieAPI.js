@@ -453,4 +453,11 @@ document.addEventListener("DOMContentLoaded", function() {
       newCardDiv.appendChild(cardBodyDiv);
       container.appendChild(newCardDiv);
   });
+
+  let cards = document.getElementsByClassName("card-body");
+  let cardsCount = cards.length;
+
+  let Count = document.getElementById("count")
+  Count.innerText = cardsCount
+  +"건"
 });
