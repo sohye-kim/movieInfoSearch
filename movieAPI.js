@@ -402,6 +402,7 @@ document.addEventListener("DOMContentLoaded", function() {
       newCardDiv.className = "card";
       newCardDiv.style.width = "18rem";
       newCardDiv.style.marginBottom = "30px";
+      newCardDiv.setAttribute('id', cardContent.id)
 
       let imgElement = document.createElement("img");
       imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
@@ -455,6 +456,11 @@ document.addEventListener("DOMContentLoaded", function() {
       newCardDiv.appendChild(imgElement);
       newCardDiv.appendChild(cardBodyDiv);
       container.appendChild(newCardDiv);
+
+      cardBodyDiv.addEventListener('click', () => {
+        let movieID = newCardDiv.getAttribute('id');
+        alert("ID: " + movieID);
+      });
   });
 
   let cards = document.getElementsByClassName("card-body");
