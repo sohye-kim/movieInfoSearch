@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       cardBodyDiv.addEventListener('click', () => {
         let movieID = newCardDiv.getAttribute('id');
-        alert("ID: " + movieID);
+        alert("The ID of this movie is " + movieID + ".");
       });
   });
 
