@@ -4,85 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐻GOAM: The Greatest Of All Movies</title>
+    <title>🐻GOAM🐻</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Zeyada&display=swap" rel="stylesheet">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Zeyada&display=swap');
-
-        h1 {
-            font-family: 'Kaushan Script', cursive;
-        }
-        h3 {
-            font-family: 'Zeyada', cursive;
-        }
-
-        body {
-            background:linear-gradient(to bottom, rgb(255, 243, 216), rgb(255, 255, 255));
-        }
-
-        .title {
-            background: url("img/unsplash_theater.jpg") no-repeat;
-            background-size: 1fr;
-            background-position: center;
-
-            text-align: center;
-            color: antiquewhite;
-
-            padding: 60px;
-            height: 300px;
-        }
-        .homebtn {
-            border: none;
-            background: transparent;
-        }
-
-        @media screen and (850px < width <=1920px) {
-            .srchbox {
-                display: inline-block;
-                border: 2px solid gray;
-                border-radius: 5px;
-                width: 800px;
-                height: 40px;
-            }
-        }
-        @media screen and (width <=850px) {
-            .srchbox {
-                display: inline-block;
-                border: 2px solid gray;
-                border-radius: 5px;
-                min-width: 250px;
-                min-height: 30px;
-            }
-        }
-
-        .nav {
-            display:grid;
-            grid-template-columns: 50px 20fr 1fr;
-            padding-bottom: 20px;
-            background-color: rgb(255, 243, 216);
-        }
-        .pcrn {
-            display: inline;
-        }
-        .nav button{
-            border: none;
-            background: transparent;
-        }
-        .nav .btns{
-            margin-top: 20px;
-        }
-    </style>
-    <script src="movieAPI.js"></script>
+    <link rel="stylesheet" href="idxCss.css">
 </head>
 
 <body>
     <div class="title">
-        <h1>GOAM: The Greatest Of All Movies</h1>
+        <h1>🐻: the Greatest Of All Movies</h1>
         <h3>- informations of Movies -</h3>
         <button class="homebtn">
             <img src="img\projecter.png" width="80px" height="80px" alt="go to home">
@@ -93,16 +26,15 @@
     <div class="nav">
         <img class="pcrn" src="img\pocorn.png" width="50px">
         <div class="btns">
-            <button type="button"><img src="img\pop.png" width="30px"></buttoSn>
+            <button type="button"><img src="img\pop.png" width="30px"></button>
             <button type="button"><img src="img\bookmark.png" width="30px"></button>
             <button type="button"><img src="img\recrd.png" width="30px"></button>
         </div>
-            <span>xxx건</span>         
+        <span>xxx건</span>
     </div>
-    <div class="container">
-
+    <div id="container">
     </div>
-
+    <script src="movieAPI.js"></script>
 </body>
 
 </html>
