@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Zeyada&display=swap');
+
+h1 {
+    font-family: 'Kaushan Script', cursive;
+}
+
+h3 {
+    font-family: 'Zeyada', cursive;
+}
+
+h6 {
+    color: gray;
+}
+
+body {
+    background: linear-gradient(to bottom, rgb(255, 243, 216), rgb(255, 255, 255));
+}
+
+.title {
+    background: url("img/unsplash_theater.jpg") no-repeat;
+    background-size: 1fr;
+    background-position: center;
+
+    text-align: center;
+    color: antiquewhite;
+
+    padding: 60px;
+    height: 300px;
+}
+
+.homebtn {
+    border: none;
+    background: transparent;
+}
+
+@media screen and (850px < width <=1920px) {
+    .srchbox {
+        display: inline-block;
+        border: 2px solid gray;
+        border-radius: 5px;
+        width: 800px;
+        height: 40px;
+    }
+}
+
+@media screen and (width <=850px) {
+    .srchbox {
+        display: inline-block;
+        border: 2px solid gray;
+        border-radius: 5px;
+        min-width: 250px;
+        min-height: 30px;
+    }
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 50px 20fr 1fr;
+    padding-bottom: 20px;
+    background-color: rgb(255, 243, 216);
+}
+
+.pcrn {
+    display: inline;
+}
+
+.nav button {
+    border: none;
+    background: transparent;
+}
+
+.nav .btns {
+    margin-top: 20px;
+}
+
+#container {
+    width: 1200px;
+    display: inline;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 20px;
+    margin: 20px 20px 20px 20px;
+}
