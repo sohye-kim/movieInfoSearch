@@ -401,9 +401,10 @@ document.addEventListener("DOMContentLoaded", function() {
       let newCardDiv = document.createElement("div");
       newCardDiv.className = "card";
       newCardDiv.style.width = "18rem";
+      newCardDiv.style.marginBottom = "30px";
 
       let imgElement = document.createElement("img");
-      imgElement.src = cardContent.poster_path;
+      imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
       imgElement.className = "poster";
 
       let cardBodyDiv = document.createElement("div");
@@ -427,11 +428,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
       let bmkSwitchDiv = document.createElement("div");
       bmkSwitchDiv.className = "bmkSwitch";
+
       let switchInput = document.createElement("input");
       switchInput.className = "switch_d";
       switchInput.type = "checkbox";
       switchInput.role = "switch";
       switchInput.id = "checkDefault";
+
       let switchLabel = document.createElement("label");
       switchLabel.className = "switch_c";
       switchLabel.htmlFor = "checkDefault";
@@ -455,9 +458,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   let cards = document.getElementsByClassName("card-body");
-  let cardsCount = cards.length;
-
-  let Count = document.getElementById("count")
-  Count.innerText = cardsCount
-  +"건"
+  let Count = document.getElementById("count");
+  Count.innerText = cards.length+"건";
 });
