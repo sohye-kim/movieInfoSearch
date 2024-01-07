@@ -74,9 +74,5 @@ body {
 }
 
 #container {
-    width: 1200px;
-    display: inline;
     background-color: rgba(255, 255, 255, 0);
-    padding: 20px;
-    margin: 20px 20px 20px 20px;
 }
