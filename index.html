@@ -20,8 +20,8 @@
         <button class="homebtn">
             <img src="img\projecter.png" width="80px" height="80px" alt="go to home">
         </button>
-        <input type="search" placeholder="Please enter the movie title..." class="srchbox">
-        <button type="button" class="btn btn-outline-dark">🔍︎</button>
+        <input type="search" placeholder="Please enter the movie title..." id="srchBox">
+        <button type="submit" class="btn btn-outline-dark" id="srchBtn">🔍︎</button>
     </div>
     <div class="nav">
         <img class="pcrn" src="img\pocorn.png" width="50px">
@@ -32,7 +32,8 @@
         </div>
         <span id="count">xxx건</span>
     </div>
-    <div id="container" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: auto; margin-left: 30px; margin-bottom: 30px;">
+    <div id="container"
+        style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: auto; margin-left: 30px; margin-bottom: 30px;">
     </div>
     <script src="movieAPI.js"></script>
 </body>
