@@ -395,75 +395,77 @@ const popMovieData = {
   "total_results": 9056
 };
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   let container = document.getElementById("container");
-  popMovieData.results.forEach(function(cardContent) {
-      let newCardDiv = document.createElement("div");
-      newCardDiv.className = "card";
-      newCardDiv.style.width = "18rem";
-      newCardDiv.style.marginBottom = "30px";
-      newCardDiv.setAttribute('id', cardContent.id)
+  let searchBox = document.getElementById("srchBox");
+  let searchButton = document.getElementById("srchBtn");
+  popMovieData.results.forEach(function (cardContent) {
+    let newCardDiv = document.createElement("div");
+    newCardDiv.className = "card";
+    newCardDiv.style.width = "18rem";
+    newCardDiv.style.marginBottom = "30px";
+    newCardDiv.setAttribute('id', cardContent.id)
 
-      let imgElement = document.createElement("img");
-      imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
-      imgElement.className = "poster";
+    let imgElement = document.createElement("img");
+    imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
+    imgElement.className = "poster";
 
-      let cardBodyDiv = document.createElement("div");
-      cardBodyDiv.className = "card-body";
+    let cardBodyDiv = document.createElement("div");
+    cardBodyDiv.className = "card-body";
 
-      let orginlTitle = document.createElement("h5");
-      orginlTitle.className = "orginlTitle";
-      orginlTitle.textContent = cardContent.original_title;
+    let orginlTitle = document.createElement("h5");
+    orginlTitle.className = "orginlTitle";
+    orginlTitle.textContent = cardContent.original_title;
 
-      let title_en = document.createElement("h6");
-      title_en.className = "title_en";
-      title_en.textContent = cardContent.title;
+    let title_en = document.createElement("h6");
+    title_en.className = "title_en";
+    title_en.textContent = cardContent.title;
 
-      let overview = document.createElement("p");
-      overview.className = "overview";
-      overview.textContent = cardContent.overview;
+    let overview = document.createElement("p");
+    overview.className = "overview";
+    overview.textContent = cardContent.overview;
 
-      let rating = document.createElement("p");
-      rating.className = "rating";
-      rating.textContent = "Rating: " + cardContent.vote_average;
+    let rating = document.createElement("p");
+    rating.className = "rating";
+    rating.textContent = "Rating: " + cardContent.vote_average;
 
-      let bmkSwitchDiv = document.createElement("div");
-      bmkSwitchDiv.className = "bmkSwitch";
+    let rlsDate = document.createElement("p");
+    rlsDate.className = "rlsDate";
+    rlsDate.textContent = cardContent.release_date;
 
-      let switchInput = document.createElement("input");
-      switchInput.className = "switch_d";
-      switchInput.type = "checkbox";
-      switchInput.role = "switch";
-      switchInput.id = "checkDefault";
+    cardBodyDiv.appendChild(orginlTitle);
+    cardBodyDiv.appendChild(title_en);
+    cardBodyDiv.appendChild(overview);
+    cardBodyDiv.appendChild(rating);
+    cardBodyDiv.appendChild(rlsDate);
+    newCardDiv.appendChild(imgElement);
+    newCardDiv.appendChild(cardBodyDiv);
+    container.appendChild(newCardDiv);
 
-      let switchLabel = document.createElement("label");
-      switchLabel.className = "switch_c";
-      switchLabel.htmlFor = "checkDefault";
-      switchLabel.textContent = "⭐";
-
-      let rlsDate = document.createElement("p");
-      rlsDate.className = "rlsDate";
-      rlsDate.textContent = cardContent.release_date;
-
-      cardBodyDiv.appendChild(orginlTitle);
-      cardBodyDiv.appendChild(title_en);
-      cardBodyDiv.appendChild(overview);
-      cardBodyDiv.appendChild(rating);
-      bmkSwitchDiv.appendChild(switchInput);
-      bmkSwitchDiv.appendChild(switchLabel);
-      cardBodyDiv.appendChild(bmkSwitchDiv);
-      cardBodyDiv.appendChild(rlsDate);
-      newCardDiv.appendChild(imgElement);
-      newCardDiv.appendChild(cardBodyDiv);
-      container.appendChild(newCardDiv);
-
-      cardBodyDiv.addEventListener('click', () => {
-        let movieID = newCardDiv.getAttribute('id');
-        alert("The ID of this movie is " + movieID + ".");
-      });
+    cardBodyDiv.addEventListener('click', () => {
+      let movieID = newCardDiv.getAttribute('id');
+      alert("The ID of this movie is " + movieID + ".");
+    });
   });
 
   let cards = document.getElementsByClassName("card-body");
   let Count = document.getElementById("count");
-  Count.innerText = cards.length+"건";
+  Count.innerText = cards.length + "건";
+
+  searchButton.addEventListener("click", function () {
+    let searchTerm = searchBox.value.trim().toUpperCase();
+
+    if (searchTerm !== "") {
+      let filteredMovies = popMovieData.results.filter(function (movie) {
+        return (
+          movie.original_title.toUpperCase().includes(searchTerm) ||
+          movie.title.toUpperCase().includes(searchTerm) ||
+          movie.overview.toUpperCase().includes(searchTerm)
+        );
+      });
+      renderMovies(filteredMovies);
+    } else {
+     alert("No results were found for your search.")
+    }
+  });
 });
