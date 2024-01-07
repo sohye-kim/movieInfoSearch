@@ -34,7 +34,7 @@ body {
 }
 
 @media screen and (850px < width <=1920px) {
-    .srchbox {
+    #srchBox {
         display: inline-block;
         border: 2px solid gray;
         border-radius: 5px;
@@ -44,7 +44,7 @@ body {
 }
 
 @media screen and (width <=850px) {
-    .srchbox {
+    #srchBox {
         display: inline-block;
         border: 2px solid gray;
         border-radius: 5px;
