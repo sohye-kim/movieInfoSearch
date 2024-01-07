@@ -1,4 +1,4 @@
-const movieData = {
+const popMovieData = {
   "page": 1,
   "results": [
     {
@@ -395,12 +395,62 @@ const movieData = {
   "total_results": 9056
 };
 
+document.addEventListener("DOMContentLoaded", function() {
+  let container = document.getElementById("container");
+  popMovieData.results.forEach(function(cardContent) {
+      let newCardDiv = document.createElement("div");
+      newCardDiv.className = "card";
+      newCardDiv.style.width = "18rem";
 
-movieData.results.forEach(movie => {
-  const poster = movie.poster_path;
-  const title = movie.original_title;
-  const overview = movie.overview;
-  const vote = movie.vote_average;
-  const date = movie.release_date;
-  console.log("poster path=", poster, "title:", title, "줄거리:", overview, "평점:", vote, "개봉일:", date);
-})
+      let imgElement = document.createElement("img");
+      imgElement.src = cardContent.poster_path;
+      imgElement.className = "poster";
+
+      let cardBodyDiv = document.createElement("div");
+      cardBodyDiv.className = "card-body";
+
+      let orginlTitle = document.createElement("h5");
+      orginlTitle.className = "orginlTitle";
+      orginlTitle.textContent = cardContent.original_title;
+
+      let title_en = document.createElement("h6");
+      title_en.className = "title_en";
+      title_en.textContent = cardContent.title;
+
+      let overview = document.createElement("p");
+      overview.className = "overview";
+      overview.textContent = cardContent.overview;
+
+      let rating = document.createElement("p");
+      rating.className = "rating";
+      rating.textContent = "Rating: " + cardContent.vote_average;
+
+      let bmkSwitchDiv = document.createElement("div");
+      bmkSwitchDiv.className = "bmkSwitch";
+      let switchInput = document.createElement("input");
+      switchInput.className = "switch_d";
+      switchInput.type = "checkbox";
+      switchInput.role = "switch";
+      switchInput.id = "checkDefault";
+      let switchLabel = document.createElement("label");
+      switchLabel.className = "switch_c";
+      switchLabel.htmlFor = "checkDefault";
+      switchLabel.textContent = "⭐";
+
+      let rlsDate = document.createElement("p");
+      rlsDate.className = "rlsDate";
+      rlsDate.textContent = cardContent.release_date;
+
+      cardBodyDiv.appendChild(orginlTitle);
+      cardBodyDiv.appendChild(title_en);
+      cardBodyDiv.appendChild(overview);
+      cardBodyDiv.appendChild(rating);
+      bmkSwitchDiv.appendChild(switchInput);
+      bmkSwitchDiv.appendChild(switchLabel);
+      cardBodyDiv.appendChild(bmkSwitchDiv);
+      cardBodyDiv.appendChild(rlsDate);
+      newCardDiv.appendChild(imgElement);
+      newCardDiv.appendChild(cardBodyDiv);
+      container.appendChild(newCardDiv);
+  });
+});
