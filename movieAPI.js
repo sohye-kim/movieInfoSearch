@@ -409,6 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let imgElement = document.createElement("img");
     imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
     imgElement.className = "poster";
+    imgElement.setAttribute('id', cardContent.id)
 
     let cardBodyDiv = document.createElement("div");
     cardBodyDiv.className = "card-body";
@@ -446,6 +447,10 @@ document.addEventListener("DOMContentLoaded", function () {
       let movieID = newCardDiv.getAttribute('id');
       alert("The ID of this movie is " + movieID + ".");
     });
+    imgElement.addEventListener('click', () => {
+      let movieID = imgElement.getAttribute('id');
+      alert("The ID of this movie is " + movieID + ".");
+    })
   });
 
   let cards = document.getElementsByClassName("card-body");
@@ -453,19 +458,82 @@ document.addEventListener("DOMContentLoaded", function () {
   Count.innerText = cards.length + "건";
 
   searchButton.addEventListener("click", function () {
-    let searchTerm = searchBox.value.trim().toUpperCase();
+    let searchTerm = searchBox.value.trim().toLowerCase();
 
     if (searchTerm !== "") {
       let filteredMovies = popMovieData.results.filter(function (movie) {
         return (
-          movie.original_title.toUpperCase().includes(searchTerm) ||
-          movie.title.toUpperCase().includes(searchTerm) ||
-          movie.overview.toUpperCase().includes(searchTerm)
+          movie.original_title.toLowerCase().includes(searchTerm) ||
+          movie.title.toLowerCase().includes(searchTerm) ||
+          movie.overview.toLowerCase().includes(searchTerm)
         );
       });
+
+      function renderMovies(movies) {
+        let container = document.getElementById("container");
+        container.innerHTML = ''; // 기존의 영화 카드를 모두 제거
+      
+        movies.forEach(function (cardContent) {
+          let newCardDiv = document.createElement("div");
+          newCardDiv.className = "card";
+          newCardDiv.style.width = "18rem";
+          newCardDiv.style.marginBottom = "30px";
+          newCardDiv.setAttribute('id', cardContent.id);
+      
+          let imgElement = document.createElement("img");
+          imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
+          imgElement.className = "poster";
+          imgElement.setAttribute('id', cardContent.id);
+      
+          let cardBodyDiv = document.createElement("div");
+          cardBodyDiv.className = "card-body";
+      
+          let orginlTitle = document.createElement("h5");
+          orginlTitle.className = "orginlTitle";
+          orginlTitle.textContent = cardContent.original_title;
+      
+          let title_en = document.createElement("h6");
+          title_en.className = "title_en";
+          title_en.textContent = cardContent.title;
+      
+          let overview = document.createElement("p");
+          overview.className = "overview";
+          overview.textContent = cardContent.overview;
+      
+          let rating = document.createElement("p");
+          rating.className = "rating";
+          rating.textContent = "Rating: " + cardContent.vote_average;
+      
+          let rlsDate = document.createElement("p");
+          rlsDate.className = "rlsDate";
+          rlsDate.textContent = cardContent.release_date;
+      
+          cardBodyDiv.appendChild(orginlTitle);
+          cardBodyDiv.appendChild(title_en);
+          cardBodyDiv.appendChild(overview);
+          cardBodyDiv.appendChild(rating);
+          cardBodyDiv.appendChild(rlsDate);
+          newCardDiv.appendChild(imgElement);
+          newCardDiv.appendChild(cardBodyDiv);
+          container.appendChild(newCardDiv);
+      
+          cardBodyDiv.addEventListener('click', function () {
+            let movieID = newCardDiv.getAttribute('id');
+            alert("This movie's ID is " + movieID + ".");
+          });
+      
+          imgElement.addEventListener('click', function () {
+            let movieID = imgElement.getAttribute('id');
+            alert("This movie's ID is " + movieID + ".");
+          });
+        });
+      
+        let cards = document.getElementsByClassName("card-body");
+        let Count = document.getElementById("count");
+        Count.innerText = cards.length + "건";
+      }
+
       renderMovies(filteredMovies);
-    } else {
-     alert("No results were found for your search.")
     }
   });
 });
