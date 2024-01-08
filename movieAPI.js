@@ -471,7 +471,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       function renderMovies(movies) {
         let container = document.getElementById("container");
-        container.innerHTML = ''; // 기존의 영화 카드를 모두 제거
+        container.innerHTML = '';
       
         movies.forEach(function (cardContent) {
           let newCardDiv = document.createElement("div");
