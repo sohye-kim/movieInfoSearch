@@ -397,7 +397,6 @@ const popMovieData = {
 
 document.addEventListener("DOMContentLoaded", function () {
   let container = document.getElementById("container");
-  container.style.backgroundColor = "rgba(255, 255, 255, 0)";
 
   let searchBox = document.getElementById("srchBox");
   let searchButton = document.getElementById("srchBtn");
