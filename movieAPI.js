@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'YOUR_ACCESS_TOKEN'
+      Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NzIyOTlkZTM4YTE1NGU1Njg4YWJjMzBhODkxMDE1ZSIsInN1YiI6IjY1OTkwOWUxMWQxYmY0MDE0ZDIyZjUzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QSG-JwYobUInShjYgCyHAN3--1OnT3GEi-zVcNpDJrs'
     }
   };
 
