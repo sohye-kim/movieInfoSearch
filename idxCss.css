@@ -72,3 +72,10 @@ body {
 .nav .btns {
     margin-top: 20px;
 }
+
+#container{
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: auto;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0);
+}
