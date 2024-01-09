@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("This movie's ID is " + movieID + ".");
     });
   }
+  
   function performSearch(data) {
     let searchTerm = searchBox.value.trim().toLowerCase();
 
@@ -101,12 +102,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let count = document.getElementById("count");
         count.innerText = cards.length + "건";
 
-        // Display alert if no search results
         if (movies.length === 0) {
           alert("No search results found.");
         }
       }
-
       renderMovies(filteredMovies);
     }
   };
@@ -117,6 +116,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Add event listener for "click" event
   searchButton.addEventListener("click", () => performSearch(popMovieData));
 });
