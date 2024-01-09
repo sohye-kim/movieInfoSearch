@@ -397,6 +397,8 @@ const popMovieData = {
 
 document.addEventListener("DOMContentLoaded", function () {
   let container = document.getElementById("container");
+  container.style.backgroundColor = "rgba(255, 255, 255, 0)";
+
   let searchBox = document.getElementById("srchBox");
   let searchButton = document.getElementById("srchBtn");
 
@@ -452,14 +454,16 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("This movie's ID is " + movieID + ".");
     });
   }
-
   popMovieData.results.forEach(makeCard);
-  
+
   let cards = document.getElementsByClassName("card-body");
   let Count = document.getElementById("count");
   Count.innerText = cards.length + "건";
 
-  searchButton.addEventListener("click", function () {
+
+
+
+  function performSearch() {
     let searchTerm = searchBox.value.trim().toLowerCase();
 
     if (searchTerm !== "") {
@@ -476,11 +480,25 @@ document.addEventListener("DOMContentLoaded", function () {
         movies.forEach(makeCard);
 
         let cards = document.getElementsByClassName("card-body");
-        let Count = document.getElementById("count");
-        Count.innerText = cards.length + "건";
+        let count = document.getElementById("count");
+        count.innerText = cards.length + "건";
+
+        // Display alert if no search results
+        if (movies.length === 0) {
+          alert("No search results found.");
+        }
       }
 
       renderMovies(filteredMovies);
     }
+  };
+
+  searchBox.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      performSearch();
+    }
   });
+
+  // Add event listener for "click" event
+  searchButton.addEventListener("click", performSearch);
 });
