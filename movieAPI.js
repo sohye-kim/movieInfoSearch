@@ -2,18 +2,20 @@ document.addEventListener("DOMContentLoaded", function () {
   let container = document.getElementById("container");
   let searchBox = document.getElementById("srchBox");
   let searchButton = document.getElementById("srchBtn");
+  let popMovieData; // Add global variable for popMovieData
 
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NzIyOTlkZTM4YTE1NGU1Njg4YWJjMzBhODkxMDE1ZSIsInN1YiI6IjY1OTkwOWUxMWQxYmY0MDE0ZDIyZjUzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QSG-JwYobUInShjYgCyHAN3--1OnT3GEi-zVcNpDJrs'
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NzIyOTlkZTM4YTE1NGU1Njg4YWJjMzBhODkxMDE1ZSIsInN1YiI6IjY1OTkwOWUxMWQxYmY0MDE0ZDIyZjUzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QSG-JwYobUInShjYgCyHAN3--1OnT3GEi-zVcNpDJrs'
     }
   };
-
   fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
     .then(response => response.json())
-    .then(popMovieData => {
+    .then(response => {
+      console.log(response);
+      popMovieData = response;
       popMovieData.results.forEach(makeCard);
 
       let cards = document.getElementsByClassName("card-body");
@@ -108,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       renderMovies(filteredMovies);
     }
-  };
+  }
 
   searchBox.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
@@ -117,4 +119,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   searchButton.addEventListener("click", () => performSearch(popMovieData));
-}); 
+});
