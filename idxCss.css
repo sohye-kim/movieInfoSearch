@@ -28,7 +28,7 @@ body {
     height: 300px;
 }
 
-.homebtn {
+#reload {
     border: none;
     background: transparent;
 }
