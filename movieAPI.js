@@ -399,20 +399,24 @@ document.addEventListener("DOMContentLoaded", function () {
   let container = document.getElementById("container");
   let searchBox = document.getElementById("srchBox");
   let searchButton = document.getElementById("srchBtn");
-  popMovieData.results.forEach(function (cardContent) {
+
+  function makeCard(cardContent) {
     let newCardDiv = document.createElement("div");
     newCardDiv.className = "card";
     newCardDiv.style.width = "18rem";
     newCardDiv.style.marginBottom = "30px";
-    newCardDiv.setAttribute('id', cardContent.id)
+    newCardDiv.setAttribute('id', cardContent.id);
+
+    let cardBodyDiv = document.createElement("div");
+    cardBodyDiv.className = "card-body";
 
     let imgElement = document.createElement("img");
     imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
     imgElement.className = "poster";
-    imgElement.setAttribute('id', cardContent.id)
-
-    let cardBodyDiv = document.createElement("div");
-    cardBodyDiv.className = "card-body";
+    imgElement.setAttribute('id', cardContent.id);
+    imgElement.style.maxWidth = "15.38rem";
+    imgElement.style.display = "flex";
+    imgElement.style.marginBottom = "10px";
 
     let orginlTitle = document.createElement("h5");
     orginlTitle.className = "orginlTitle";
@@ -434,25 +438,23 @@ document.addEventListener("DOMContentLoaded", function () {
     rlsDate.className = "rlsDate";
     rlsDate.textContent = cardContent.release_date;
 
+    cardBodyDiv.appendChild(imgElement);
     cardBodyDiv.appendChild(orginlTitle);
     cardBodyDiv.appendChild(title_en);
     cardBodyDiv.appendChild(overview);
     cardBodyDiv.appendChild(rating);
     cardBodyDiv.appendChild(rlsDate);
-    newCardDiv.appendChild(imgElement);
     newCardDiv.appendChild(cardBodyDiv);
     container.appendChild(newCardDiv);
 
-    cardBodyDiv.addEventListener('click', () => {
+    cardBodyDiv.addEventListener('click', function () {
       let movieID = newCardDiv.getAttribute('id');
-      alert("The ID of this movie is " + movieID + ".");
+      alert("This movie's ID is " + movieID + ".");
     });
-    imgElement.addEventListener('click', () => {
-      let movieID = imgElement.getAttribute('id');
-      alert("The ID of this movie is " + movieID + ".");
-    })
-  });
+  }
 
+  popMovieData.results.forEach(makeCard);
+  
   let cards = document.getElementsByClassName("card-body");
   let Count = document.getElementById("count");
   Count.innerText = cards.length + "건";
@@ -470,64 +472,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       function renderMovies(movies) {
-        let container = document.getElementById("container");
         container.innerHTML = '';
-      
-        movies.forEach(function (cardContent) {
-          let newCardDiv = document.createElement("div");
-          newCardDiv.className = "card";
-          newCardDiv.style.width = "18rem";
-          newCardDiv.style.marginBottom = "30px";
-          newCardDiv.setAttribute('id', cardContent.id);
-      
-          let imgElement = document.createElement("img");
-          imgElement.src = "https://image.tmdb.org/t/p/original/" + cardContent.poster_path;
-          imgElement.className = "poster";
-          imgElement.setAttribute('id', cardContent.id);
-      
-          let cardBodyDiv = document.createElement("div");
-          cardBodyDiv.className = "card-body";
-      
-          let orginlTitle = document.createElement("h5");
-          orginlTitle.className = "orginlTitle";
-          orginlTitle.textContent = cardContent.original_title;
-      
-          let title_en = document.createElement("h6");
-          title_en.className = "title_en";
-          title_en.textContent = cardContent.title;
-      
-          let overview = document.createElement("p");
-          overview.className = "overview";
-          overview.textContent = cardContent.overview;
-      
-          let rating = document.createElement("p");
-          rating.className = "rating";
-          rating.textContent = "Rating: " + cardContent.vote_average;
-      
-          let rlsDate = document.createElement("p");
-          rlsDate.className = "rlsDate";
-          rlsDate.textContent = cardContent.release_date;
-      
-          cardBodyDiv.appendChild(orginlTitle);
-          cardBodyDiv.appendChild(title_en);
-          cardBodyDiv.appendChild(overview);
-          cardBodyDiv.appendChild(rating);
-          cardBodyDiv.appendChild(rlsDate);
-          newCardDiv.appendChild(imgElement);
-          newCardDiv.appendChild(cardBodyDiv);
-          container.appendChild(newCardDiv);
-      
-          cardBodyDiv.addEventListener('click', function () {
-            let movieID = newCardDiv.getAttribute('id');
-            alert("This movie's ID is " + movieID + ".");
-          });
-      
-          imgElement.addEventListener('click', function () {
-            let movieID = imgElement.getAttribute('id');
-            alert("This movie's ID is " + movieID + ".");
-          });
-        });
-      
+        movies.forEach(makeCard);
+
         let cards = document.getElementsByClassName("card-body");
         let Count = document.getElementById("count");
         Count.innerText = cards.length + "건";
